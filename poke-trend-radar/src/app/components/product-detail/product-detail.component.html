@@ -1,0 +1,25 @@
+<div *ngIf="loading">Loading product details...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<div *ngIf="productDetails">
+  <h2>{{ productDetails.product_name }} ({{ productDetails.language }})</h2>
+  <img
+    *ngIf="productDetails.image"
+    [src]="productDetails.image"
+    alt="Product Image"
+  />
+  <p><strong>Title:</strong> {{ productDetails.title }}</p>
+  <p><strong>Condition:</strong> {{ productDetails.condition || "N/A" }}</p>
+  <p><strong>TCG Name:</strong> {{ productDetails.tcg_name }}</p>
+
+  <div>
+    <h3>Price History</h3>
+    <ul>
+      <li *ngFor="let scrape of productDetails.historical_scrape_data">
+        <strong>{{ scrape.scrape_date | date }}</strong> - Avg:
+        {{ scrape.avg_price }} | Min: {{ scrape.min_price }} | Max:
+        {{ scrape.max_price }}
+      </li>
+    </ul>
+  </div>
+</div>
