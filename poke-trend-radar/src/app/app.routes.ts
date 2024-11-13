@@ -2,9 +2,9 @@ import { Routes } from '@angular/router';
 import { ProductDetailPageComponent } from './route-pages/product-detail-page/product-detail-page.component';
 import { HomePageComponent } from './route-pages/home-page/home-page.component';
 
-enum PageRouteEnum {
+export enum PageRouteEnum {
     DEFAULT = "home",
-    PRODUCT_DETAIL = "product/:id_url"
+    PRODUCT_DETAIL = "product-details/:id_url"
 }
 
 export const routes: Routes = [
