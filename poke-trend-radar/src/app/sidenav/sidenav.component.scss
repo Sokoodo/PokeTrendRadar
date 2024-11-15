@@ -1,0 +1,12 @@
+.drawerContainer {
+  width: 100%;
+  height: calc(100vh - var(--mat-toolbar-standard-height)) !important;
+}
+
+.matDrawerContent {
+  margin-left: 13rem;
+}
+
+.actualDrawer {
+  padding: 1.4rem;
+}

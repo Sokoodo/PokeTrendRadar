@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container">
-  <mat-drawer mode="over" opened>Drawer content</mat-drawer>
-  <mat-drawer-content>Main content</mat-drawer-content>
+<mat-drawer-container class="drawerContainer">
+  <mat-drawer class="actualDrawer" mode="side" opened>Drawer content</mat-drawer>
+  <mat-drawer-content class="matDrawerContent"><ng-content></ng-content></mat-drawer-content>
 </mat-drawer-container>
