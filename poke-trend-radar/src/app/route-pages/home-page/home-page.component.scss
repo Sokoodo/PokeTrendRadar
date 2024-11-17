@@ -1,0 +1,15 @@
+.homeContainer {
+  padding: 20rem 19rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.homeBtn {
+  height: 10rem !important;
+  width: 15rem !important;
+  border-radius: 10px !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}

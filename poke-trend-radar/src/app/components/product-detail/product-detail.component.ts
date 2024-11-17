@@ -1,23 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { ProductDetail, ProductService } from '../../services/product-manager.service';
+import { ProductChartComponent } from "../product-chart/product-chart.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ProductChartComponent],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })
 export class ProductDetailComponent implements OnInit {
   @Input("inputProductUrl") inputProductUrl?: string;
-  
+
   private _productService = inject(ProductService);
+  private _titleService = inject(Title);
 
   productDetails?: ProductDetail;
   productUrl: string;
-  loading = true;
-  error = '';
+  loading: boolean;
+  error: string;
 
   constructor() {
     this.productUrl = "";
@@ -29,6 +32,7 @@ export class ProductDetailComponent implements OnInit {
     if (this.inputProductUrl != undefined) {
       this.productUrl = this.inputProductUrl;
       this.getProductDetails(this.productUrl);
+      this._titleService.setTitle(this.productDetails?.title ?? "PokeTrendRadar")
     }
   }
 

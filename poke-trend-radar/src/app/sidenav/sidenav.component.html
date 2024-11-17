@@ -1,4 +1,13 @@
 <mat-drawer-container class="drawerContainer">
-  <mat-drawer class="actualDrawer" mode="side" opened>Drawer content</mat-drawer>
-  <mat-drawer-content class="matDrawerContent"><ng-content></ng-content></mat-drawer-content>
+  <mat-drawer class="actualDrawer" mode="side" opened>
+    <button mat-stroked-button (click)="goToSealedPage()" class="sidenavBtn">
+      Sealed
+    </button>
+    <button mat-stroked-button (click)="goToSinglePage()" class="sidenavBtn">
+      Singles
+    </button>
+  </mat-drawer>
+  <mat-drawer-content class="matDrawerContent">
+    <ng-content></ng-content>
+  </mat-drawer-content>
 </mat-drawer-container>

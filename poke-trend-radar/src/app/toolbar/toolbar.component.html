@@ -1,5 +1,5 @@
 <mat-toolbar [color]="'primary'" class="toolbarContainer">
-  <img src="../app-logo.png" width="30px" height="30px"/>
-  <span>My Application</span>
+  <img (click)="redirectHome()" src="assets/app-logo.png" width="30px" height="30px" class="toolbarImage"/>
+  <span (click)="redirectHome()" class="redirecHome">Poke Trend Radar</span>
 </mat-toolbar>
   

@@ -1,14 +1,8 @@
-<app-toolbar></app-toolbar>
-<app-sidenav>
-  <button mat-stroked-button (click)="goToSealedPage()">Sealed</button>
-  <button mat-stroked-button (click)="goToSinglePage()">Singles</button>
-
-  <mat-form-field>
-    <mat-label>CardMarket URL </mat-label>
-    <input matInput [placeholder]="'Insert URL'" [(ngModel)]="productUrl" />
-  </mat-form-field>
-
-  <button mat-stroked-button (click)="searchProduct()">
-    <mat-icon>search</mat-icon>Search
+<div class="homeContainer">
+  <button mat-stroked-button (click)="goToSealedPage()" class="homeBtn">
+    Sealed
   </button>
-</app-sidenav>
+  <button mat-stroked-button (click)="goToSinglePage()" class="homeBtn">
+    Singles
+  </button>
+</div>

@@ -3,26 +3,62 @@
   <div *ngIf="error">{{ error }}</div>
 
   <div *ngIf="productDetails">
-    <h2>{{ productDetails.product_name }} ({{ productDetails.language }})</h2>
-    <img
-      *ngIf="productDetails.image"
-      [src]="'data:image/png;base64,' + productDetails.image"
-      alt="Product Image"
-    />
-
-    <p><strong>Title:</strong> {{ productDetails.title }}</p>
-    <p><strong>Condition:</strong> {{ productDetails.condition || "N/A" }}</p>
-    <p><strong>TCG Name:</strong> {{ productDetails.tcg_name }}</p>
-
+    <div class="productOverview">
+      <div class="imageContainer">
+        <img
+          *ngIf="productDetails.image"
+          [src]="'data:image/png;base64,' + productDetails.image"
+          alt="Product Image"
+          class="img"
+        />
+      </div>
+      <div class="productInfoContainer">
+        <p style="font-size: 1.7rem; font-weight: 500; padding-bottom: 1rem">
+          {{ productDetails.title }}
+        </p>
+        <p class="pForDetails" *ngIf="productDetails.product_type == 'Singles'">
+          <strong>Card Number: </strong> {{ productDetails.card_number }}
+        </p>
+        <p class="pForDetails" *ngIf="productDetails.product_type == 'Singles'">
+          <strong>Set: </strong> {{ productDetails.set_name }}
+        </p>
+        <p class="pForDetails">
+          <strong>Language: </strong>
+          <img
+            *ngIf="productDetails.language == '5'"
+            src="assets/flagItaly.png"
+            width="20px"
+            height="20px"
+          />
+          <img
+            *ngIf="productDetails.language == '2'"
+            src="assets/flagFrance.png"
+            width="20px"
+            height="20px"
+          />
+          <img
+            *ngIf="productDetails.language == '1'"
+            src="assets/flagEnglish.png"
+            width="20px"
+            height="20px"
+          />
+        </p>
+        <p class="pForDetails" *ngIf="productDetails.product_type == 'Singles'">
+          <strong>Condition: </strong>
+          {{ productDetails.condition == "2" ? "NM" : "notNM" }}
+        </p>
+        <p class="pForDetails">
+          <strong>Availability: </strong>
+          {{ productDetails.current_availability }}
+        </p>
+        <p class="pForDetails">
+          <strong>Min Price: </strong>
+          {{ productDetails.current_min_price }}€
+        </p>
+      </div>
+    </div>
     <div>
-      <h3>Price History</h3>
-      <ul>
-        <li *ngFor="let scrape of productDetails.historical_scrape_data">
-          <strong>{{ scrape.scrape_date | date }}</strong> - Avg:
-          {{ scrape.avg_price }} | Min: {{ scrape.min_price }} | Max:
-          {{ scrape.max_price }}
-        </li>
-      </ul>
+      <app-product-chart></app-product-chart>
     </div>
   </div>
 </div>

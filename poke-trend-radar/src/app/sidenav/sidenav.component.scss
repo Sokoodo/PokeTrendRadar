@@ -1,12 +1,23 @@
 .drawerContainer {
   width: 100%;
   height: calc(100vh - var(--mat-toolbar-standard-height)) !important;
-}
 
-.matDrawerContent {
-  margin-left: 13rem;
-}
+  .matDrawerContent {
+    margin-left: 11.5rem;
+  }
 
-.actualDrawer {
-  padding: 1.4rem;
+  .actualDrawer {
+    padding: 2.5rem 1.3rem;
+    border-right-color: rgba(218, 229, 228, 0.39);
+    border-radius: 0;
+    font-size: 13px;
+  }
+
+  .sidenavBtn {
+    margin-bottom: 1rem;
+  }
+  .mat-drawer-inner-container {
+    display: flex !important;
+    flex-direction: column !important ;
+  }
 }
