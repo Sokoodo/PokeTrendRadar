@@ -3,7 +3,7 @@
   <div *ngIf="error">{{ error }}</div>
 
   <div *ngIf="sealedProducts">
-    <mat-grid-list cols="6" rowHeight="400px" class="gridListContainer">
+    <mat-grid-list cols="6" rowHeight="360px" class="gridListContainer">
       @for (prod of sealedProducts; track prod) {
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <mat-card class="cardContainer" appearance="outlined">

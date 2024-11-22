@@ -48,6 +48,10 @@
           {{ productDetails.condition == "2" ? "NM" : "notNM" }}
         </p>
         <p class="pForDetails">
+          <strong>Total Availability: </strong>
+          {{ totalAvailability }}
+        </p>
+        <p class="pForDetails">
           <strong>Availability: </strong>
           {{ productDetails.current_availability }}
         </p>
@@ -57,8 +61,8 @@
         </p>
       </div>
     </div>
-    <div>
-      <app-product-chart></app-product-chart>
+    <div class="diagramContainer">
+      <app-product-chart [productDetails]="productDetails"></app-product-chart>
     </div>
   </div>
 </div>

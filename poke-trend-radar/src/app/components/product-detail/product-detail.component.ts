@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ProductDetail, ProductService } from '../../services/product-manager.service';
 import { ProductChartComponent } from "../product-chart/product-chart.component";
 import { Title } from '@angular/platform-browser';
@@ -9,14 +9,16 @@ import { Title } from '@angular/platform-browser';
   standalone: true,
   imports: [CommonModule, ProductChartComponent],
   templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.scss'
+  styleUrl: './product-detail.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit{
   @Input("inputProductUrl") inputProductUrl?: string;
 
   private _productService = inject(ProductService);
   private _titleService = inject(Title);
 
+  totalAvailability: number;
   productDetails?: ProductDetail;
   productUrl: string;
   loading: boolean;
@@ -26,6 +28,7 @@ export class ProductDetailComponent implements OnInit {
     this.productUrl = "";
     this.error = "";
     this.loading = true;
+    this.totalAvailability = 0;
   }
 
   ngOnInit(): void {
@@ -41,6 +44,7 @@ export class ProductDetailComponent implements OnInit {
       next: (data) => {
         this.productDetails = data;
         this.loading = false;
+        this.totalAvailability = data.historical_scrape_data[data.historical_scrape_data.length - 1].total_availability;
       },
       error: (err) => {
         console.error('Error fetching product details', err);

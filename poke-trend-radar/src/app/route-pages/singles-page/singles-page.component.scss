@@ -1,11 +1,11 @@
 .singlesPageContainer {
-  padding: 1.3rem 0;
+  padding: 1rem 0.2rem;
 
   .cardContainer {
     height: 92%;
     width: 92%;
     padding: 0.8rem 1rem;
-    margin: 1rem 0;
+    margin: 0.6rem 0;
     display: flex;
     justify-content: space-between;
   }
@@ -15,7 +15,7 @@
   }
 
   .cardTitle {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     line-height: 1.05rem;
     cursor: pointer;
@@ -25,14 +25,14 @@
   }
   .imageContainer {
     height: 10rem;
-    width: 8rem;
+    width: 7.5rem;
     display: flex;
     justify-self: center;
     padding-bottom: 10px;
     cursor: pointer;
   }
   .prodParam {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     margin: 0 5px !important;
   }

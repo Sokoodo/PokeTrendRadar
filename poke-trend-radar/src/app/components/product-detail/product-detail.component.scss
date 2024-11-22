@@ -6,30 +6,34 @@
     flex-direction: row;
     justify-content: center;
     padding: 1.5rem;
-    background-color: rgb(0 221 221 / 32%);
-    border-radius: 50px;
     margin: 0 7rem;
   }
 
   .imageContainer {
-    padding-right: 1.2rem;
+    padding-right: 1.3rem;
   }
 
-  .img{
+  .img {
     border-radius: 7px;
     max-height: 20rem;
     min-height: 15rem;
   }
 
-  .productInfoContainer{
-    padding-left: 1.2rem;
+  .productInfoContainer {
+    padding-left: 1.3rem;
     min-width: 25rem;
     max-width: 42rem;
   }
 
-  .pForDetails{
+  .pForDetails {
     max-width: 25rem;
     display: flex;
     justify-content: space-between;
+  }
+
+  .diagramContainer{
+    padding-top: 2rem;
+    background-color: #004f4fbd;
+    border-radius: 50px;
   }
 }

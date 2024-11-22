@@ -1,7 +1,7 @@
 .drawerContainer {
   width: 100%;
   height: calc(100vh - var(--mat-toolbar-standard-height)) !important;
-
+  --mdc-outlined-button-label-text-color: #079191 !important;
   .matDrawerContent {
     margin-left: 11.5rem;
   }
