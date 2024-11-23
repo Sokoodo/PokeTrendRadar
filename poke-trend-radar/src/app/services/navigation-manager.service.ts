@@ -18,6 +18,10 @@ export class NavigationService {
         this._router.navigate([`/${PageRouteEnum.SEALED}`]);
     }
 
+    goToMyCardsPage() {
+        this._router.navigate([`/${PageRouteEnum.MY_CARDS}`]);
+    }
+
     navigateToDetails(url: string) {
         this._router.navigate([`/${PageRouteEnum.PRODUCT_DETAIL}`], { queryParams: { id_url: url } });
     }

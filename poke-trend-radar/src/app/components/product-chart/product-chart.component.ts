@@ -104,6 +104,7 @@ export class ProductChartComponent implements OnInit {
           splitLine: {
             show: false,
           },
+          inverse: true
         },
         yAxis: {
           type: 'value',

@@ -3,18 +3,22 @@ import { Component, inject, Input, OnInit, ViewEncapsulation } from '@angular/co
 import { ProductDetail, ProductService } from '../../services/product-manager.service';
 import { ProductChartComponent } from "../product-chart/product-chart.component";
 import { Title } from '@angular/platform-browser';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { OwnedProductDialogComponent } from '../owned-product-dialog/owned-product-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, ProductChartComponent],
+  imports: [CommonModule, ProductChartComponent, MatDialogModule, MatButtonModule],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',
   encapsulation: ViewEncapsulation.None
 })
-export class ProductDetailComponent implements OnInit{
+export class ProductDetailComponent implements OnInit {
   @Input("inputProductUrl") inputProductUrl?: string;
 
+  readonly dialog = inject(MatDialog);
   private _productService = inject(ProductService);
   private _titleService = inject(Title);
 
@@ -50,6 +54,14 @@ export class ProductDetailComponent implements OnInit{
         console.error('Error fetching product details', err);
         this.error = 'An error occurred while fetching the product details.';
         this.loading = false;
+      }
+    });
+  }
+
+  openAddOwnedDialog() {
+    this.dialog.open(OwnedProductDialogComponent, {
+      data: {
+        productUrl: this.productUrl
       }
     });
   }

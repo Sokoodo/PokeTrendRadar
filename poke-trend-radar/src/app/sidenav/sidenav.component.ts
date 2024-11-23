@@ -3,10 +3,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavService } from '../services/sidenav-manager.service'
 import { NavigationService } from '../services/navigation-manager.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [MatSidenavModule, MatButtonModule],
+  imports: [MatSidenavModule, MatButtonModule, MatDividerModule],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
   encapsulation: ViewEncapsulation.None
@@ -28,5 +30,8 @@ export class SidenavComponent {
   }
   goToSinglePage() {
     this._navService.goToSinglePage();
+  }
+  goToMyCardsPage() {
+    this._navService.goToMyCardsPage();
   }
 }
