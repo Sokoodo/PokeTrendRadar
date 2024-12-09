@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-export interface OwnedProductDetail {
+export interface MyProductDetail {
     product_id: string;
     owned_qty: number;
     buy_price: number;
@@ -11,16 +11,36 @@ export interface OwnedProductDetail {
     buy_availability: number;
 }
 
+export interface OwnedProductData {
+    id_url: string;
+    title: string;
+    image: string;
+    language: string;
+    current_min_price: number;
+    current_availability: number;
+    in_my_collection: boolean;
+    owned_entries_number: number;
+}
 @Injectable({
     providedIn: 'root',
 })
 export class OwnedProductService {
-    private apiUrl = environment.apiBaseUrl+'/api/owned_products';
+    private apiAddOwnedUrl = environment.apiBaseUrl + '/api/add_owned_products';
+    private apiUrl = environment.apiBaseUrl + '/api/owned_products';
 
     constructor(private http: HttpClient) { }
 
-    addOwnedProduct(product: OwnedProductDetail): Observable<any> {
-        return this.http.post<any>(this.apiUrl, product, { responseType: 'json' }).pipe(
+    addOwnedProduct(product: MyProductDetail): Observable<any> {
+        return this.http.post<any>(this.apiAddOwnedUrl, product, { responseType: 'json' }).pipe(
+            catchError((error) => {
+                console.error('API Error:', error);
+                return throwError(() => error);
+            })
+        );
+    }
+
+    getOwnedProductListFromApi(): Observable<OwnedProductData[]> {
+        return this.http.get<OwnedProductData[]>(this.apiUrl).pipe(
             catchError((error) => {
                 console.error('API Error:', error);
                 return throwError(() => error);

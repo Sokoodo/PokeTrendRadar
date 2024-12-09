@@ -1,0 +1,65 @@
+<div class="sealedPageContainer">
+  <div *ngIf="loading">Loading product details...</div>
+  <div *ngIf="error">{{ error }}</div>
+
+  <div *ngIf="ownedProducts">
+    <mat-grid-list cols="6" rowHeight="360px" class="gridListContainer">
+      @for (ownedProd of ownedProducts; track ownedProd) {
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-card class="cardContainer" appearance="outlined">
+          <mat-card-header class="cardHeader">
+            <mat-card-title
+              class="cardTitle"
+              (click)="navigateToDetails(ownedProd.id_url)"
+            >
+              {{ ownedProd.title }}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="cardContent">
+            <img
+              *ngIf="ownedProd.image"
+              [src]="'data:image/png;base64,' + ownedProd.image"
+              alt="Product Image"
+              class="imageContainer"
+              (click)="navigateToDetails(ownedProd.id_url)"
+            />
+            <p class="prodParam">Min: {{ ownedProd.current_min_price }}€</p>
+            <div class="qtyContent">
+              <span class="prodParam">
+                Qty: {{ ownedProd.current_availability }}
+              </span>
+              <img
+                *ngIf="ownedProd.language == '5'"
+                src="assets/flagItaly.png"
+                width="20px"
+                height="20px"
+              />
+              <img
+                *ngIf="ownedProd.language == '2'"
+                src="assets/flagFrance.png"
+                width="20px"
+                height="20px"
+              />
+              <img
+                *ngIf="ownedProd.language == '1'"
+                src="assets/flagEnglish.png"
+                width="20px"
+                height="20px"
+              />
+            </div>
+          </mat-card-content>
+          <mat-card-footer class="footerContainer">
+            <button
+              mat-stroked-button
+              (click)="redirectCM(ownedProd.id_url)"
+              class="redirectBtn"
+            >
+              Link CM
+            </button>
+          </mat-card-footer>
+        </mat-card>
+      </mat-grid-tile>
+      }
+    </mat-grid-list>
+  </div>
+</div>

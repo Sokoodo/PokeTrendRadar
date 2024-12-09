@@ -2,7 +2,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { OwnedProductDetail, OwnedProductService } from '../../services/owned-product-manager.service';
+import { MyProductDetail, OwnedProductService } from '../../services/owned-product-manager.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -35,7 +35,7 @@ export class OwnedProductDialogComponent {
 
   saveProduct() {
     if (this.ownedProductForm.valid) {
-      const ownedProduct: OwnedProductDetail = {
+      const ownedProduct: MyProductDetail = {
         product_id: this.data.productUrl,
         owned_qty: 1,
         buy_availability: this.ownedProductForm.get("buy_availability")?.value,
