@@ -4,8 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Subscription } from 'rxjs';
-import { SealedDetail } from '../../services/sealed-manager.service';
-import { SinglesService } from '../../services/singles-manager.service';
+import { SinglesDetail, SinglesService } from '../../services/singles-manager.service';
 import { NavigationService } from '../../services/navigation-manager.service';
 
 @Component({
@@ -20,7 +19,7 @@ export class SinglesPageComponent implements OnInit, OnDestroy {
   private _navService = inject(NavigationService);
   private _subs: Subscription[];
 
-  singlesProducts: SealedDetail[];
+  singlesProducts: SinglesDetail[];
   loading: boolean;
   error: string;
 

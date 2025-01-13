@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -12,8 +12,7 @@ import { OwnedProductData, OwnedProductService } from '../../services/owned-prod
   standalone: true,
   imports: [MatGridListModule, MatCardModule, CommonModule, MatButtonModule],
   templateUrl: './my-cards-page.component.html',
-  styleUrl: './my-cards-page.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './my-cards-page.component.scss'
 })
 export class MyCardsPageComponent implements OnInit, OnDestroy {
   private _ownedProdService = inject(OwnedProductService);

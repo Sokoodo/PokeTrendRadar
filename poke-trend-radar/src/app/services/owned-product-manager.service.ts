@@ -15,6 +15,7 @@ export interface OwnedProductData {
     id_url: string;
     title: string;
     image: string;
+    set_name: string;
     language: string;
     current_min_price: number;
     current_availability: number;
@@ -25,8 +26,8 @@ export interface OwnedProductData {
     providedIn: 'root',
 })
 export class OwnedProductService {
-    private apiAddOwnedUrl = environment.apiBaseUrl + '/api/add_owned_products';
-    private apiUrl = environment.apiBaseUrl + '/api/owned_products';
+    private apiAddOwnedUrl = `${environment.apiBaseUrl}/api/owned_products/add_owned_products`;
+    private getApiUrl = `${environment.apiBaseUrl}/api/owned_products/get_owned_products`;
 
     constructor(private http: HttpClient) { }
 
@@ -40,7 +41,7 @@ export class OwnedProductService {
     }
 
     getOwnedProductListFromApi(): Observable<OwnedProductData[]> {
-        return this.http.get<OwnedProductData[]>(this.apiUrl).pipe(
+        return this.http.get<OwnedProductData[]>(this.getApiUrl).pipe(
             catchError((error) => {
                 console.error('API Error:', error);
                 return throwError(() => error);

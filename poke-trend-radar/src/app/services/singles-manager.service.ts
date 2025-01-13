@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 export interface SinglesDetail {
     id_url: string;
     title: string;
+    set_name: string;
     image: string;
     language: string;
     current_min_price: number;
