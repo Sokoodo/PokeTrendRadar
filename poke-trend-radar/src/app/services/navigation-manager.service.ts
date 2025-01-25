@@ -9,24 +9,35 @@ import { PageRouteEnum } from "../common/common";
 export class NavigationService {
 
     private _router = inject(Router);
+    private _sealedUrl = PageRouteEnum.SEALED;
+    private _singlesUrl = PageRouteEnum.SINGLES;
+    private _ownedUrl = PageRouteEnum.MY_CARDS;
 
-    goToSinglePage() {
-        this._router.navigate([`/${PageRouteEnum.SINGLES}`]);
+    get singlesUrl(): string {
+        return this._singlesUrl;
     }
 
-    goToSealedPage() {
-        this._router.navigate([`/${PageRouteEnum.SEALED}`]);
+    get sealedUrl(): string {
+        return this._sealedUrl;
     }
 
-    goToMyCardsPage() {
-        this._router.navigate([`/${PageRouteEnum.MY_CARDS}`]);
+    get ownedUrl(): string {
+        return this._ownedUrl;
+    }
+
+    get pageRouteEnum(): typeof PageRouteEnum {
+        return PageRouteEnum
+    }
+
+    routeNavigate(page: PageRouteEnum) {
+        this._router.navigate([`/${page}`]);
     }
 
     navigateToDetails(url: string) {
         this._router.navigate([`/${PageRouteEnum.PRODUCT_DETAIL}`], { queryParams: { id_url: url } });
     }
 
-    redirectCmPage(url: string, win: Window) {
+    redirectOnUrlPage(url: string, win: Window) {
         win.location.href = url;
     }
 }

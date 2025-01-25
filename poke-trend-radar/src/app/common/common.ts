@@ -6,3 +6,4 @@ export enum PageRouteEnum {
     MY_CARDS = "my-cards",
     PRODUCT_DETAIL = "product-details/:id_url"
 }
+

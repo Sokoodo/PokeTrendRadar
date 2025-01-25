@@ -1,14 +1,30 @@
 <mat-drawer-container class="drawerContainer">
   <mat-drawer class="actualDrawer" mode="side" opened>
-    <button mat-stroked-button (click)="goToSealedPage()" class="sidenavBtn">
+    <button
+      mat-stroked-button
+      [middleClickRedirect]="navService.sealedUrl"
+      (click)="goToSealedPage()"
+      class="sidenavBtn"
+    >
       Sealed
     </button>
-    <button mat-stroked-button (click)="goToSinglePage()" class="sidenavBtn">
+    <button
+      mat-stroked-button
+      [middleClickRedirect]="navService.singlesUrl"
+      (click)="goToSinglePage()"
+      class="sidenavBtn"
+    >
       Singles
     </button>
     <mat-divider class="sidenavBtn"></mat-divider>
-    <button mat-stroked-button color="accent" (click)="goToMyCardsPage()" class="sidenavBtn">
-      My Cards 
+    <button
+      mat-stroked-button
+      color="accent"
+      [middleClickRedirect]="navService.ownedUrl"
+      (click)="goToMyCardsPage()"
+      class="sidenavBtn"
+    >
+      My Cards
     </button>
   </mat-drawer>
   <mat-drawer-content class="matDrawerContent">

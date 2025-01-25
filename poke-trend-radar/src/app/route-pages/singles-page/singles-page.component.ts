@@ -6,11 +6,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { Subscription } from 'rxjs';
 import { SinglesDetail, SinglesService } from '../../services/singles-manager.service';
 import { NavigationService } from '../../services/navigation-manager.service';
+import { MiddleClickDirective } from '../../directives/middleClick.directive';
 
 @Component({
   selector: 'app-singles-page',
   standalone: true,
-  imports: [MatGridListModule, MatCardModule, CommonModule, MatButtonModule],
+  imports: [MatGridListModule, MatCardModule, CommonModule, MatButtonModule, MiddleClickDirective],
   templateUrl: './singles-page.component.html',
   styleUrl: './singles-page.component.scss'
 })
@@ -51,7 +52,7 @@ export class SinglesPageComponent implements OnInit, OnDestroy {
   }
 
   redirectCM(url: string) {
-    this._navService.redirectCmPage(url, window);
+    this._navService.redirectOnUrlPage(url, window);
   }
 
   navigateToDetails(url: string) {

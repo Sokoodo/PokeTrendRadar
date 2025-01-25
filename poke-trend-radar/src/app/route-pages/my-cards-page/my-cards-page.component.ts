@@ -6,11 +6,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { Subscription } from 'rxjs';
 import { NavigationService } from '../../services/navigation-manager.service';
 import { OwnedProductData, OwnedProductService } from '../../services/owned-product-manager.service';
+import { MiddleClickDirective } from '../../directives/middleClick.directive';
 
 @Component({
   selector: 'app-my-cards-page',
   standalone: true,
-  imports: [MatGridListModule, MatCardModule, CommonModule, MatButtonModule],
+  imports: [MatGridListModule, MatCardModule, CommonModule, MatButtonModule, MiddleClickDirective],
   templateUrl: './my-cards-page.component.html',
   styleUrl: './my-cards-page.component.scss'
 })
@@ -51,7 +52,7 @@ export class MyCardsPageComponent implements OnInit, OnDestroy {
   }
 
   redirectCM(url: string) {
-    this._navService.redirectCmPage(url, window);
+    this._navService.redirectOnUrlPage(url, window);
   }
 
   navigateToDetails(url: string) {

@@ -6,11 +6,12 @@ import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { NavigationService } from '../../services/navigation-manager.service';
+import { MiddleClickDirective } from '../../directives/middleClick.directive';
 
 @Component({
   selector: 'app-sealed-page',
   standalone: true,
-  imports: [MatGridListModule, MatCardModule, CommonModule, MatButtonModule],
+  imports: [MatGridListModule, MatCardModule, CommonModule, MatButtonModule, MiddleClickDirective],
   templateUrl: './sealed-page.component.html',
   styleUrl: './sealed-page.component.scss'
 })
@@ -51,7 +52,7 @@ export class SealedPageComponent implements OnInit, OnDestroy {
   }
 
   redirectCM(url: string) {
-    this._navService.redirectCmPage(url, window);
+    this._navService.redirectOnUrlPage(url, window);
   }
 
   navigateToDetails(url: string) {

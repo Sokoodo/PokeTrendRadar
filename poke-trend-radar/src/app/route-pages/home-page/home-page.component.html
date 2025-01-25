@@ -1,8 +1,18 @@
 <div class="homeContainer">
-  <button mat-stroked-button (click)="goToSealedPage()" class="homeBtn">
+  <button
+    mat-stroked-button
+    [middleClickRedirect]="navService.sealedUrl"
+    (click)="goToSealedPage()"
+    class="homeBtn"
+  >
     Sealed
   </button>
-  <button mat-stroked-button (click)="goToSinglePage()" class="homeBtn">
+  <button
+    mat-stroked-button
+    [middleClickRedirect]="navService.singlesUrl"
+    (click)="goToSinglePage()"
+    class="homeBtn"
+  >
     Singles
   </button>
 </div>

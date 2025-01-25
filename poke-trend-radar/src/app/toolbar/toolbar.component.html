@@ -1,5 +1,16 @@
 <mat-toolbar [color]="'primary'" class="toolbarContainer">
-  <img (click)="redirectHome()" src="assets/app-logo.png" width="30px" height="30px" class="toolbarImage"/>
-  <span (click)="redirectHome()" class="redirecHome">Poke Trend Radar</span>
+  <img
+    (click)="redirectHome()"
+    [middleClickRedirect]="navService.pageRouteEnum.DEFAULT"
+    src="assets/app-logo.png"
+    width="30px"
+    height="30px"
+    class="toolbarImage"
+  />
+  <span
+    (click)="redirectHome()"
+    [middleClickRedirect]="navService.pageRouteEnum.DEFAULT"
+    class="redirecHome"
+    >Poke Trend Radar</span
+  >
 </mat-toolbar>
-  

@@ -1,25 +1,27 @@
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router } from '@angular/router';
 import { PageRouteEnum } from '../common/common';
+import { MiddleClickDirective } from '../directives/middleClick.directive';
+import { NavigationService } from '../services/navigation-manager.service';
 
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule],
+  imports: [MatToolbarModule, MatButtonModule, MiddleClickDirective],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
-  private _router = inject(Router);
+  
+  navService = inject(NavigationService);
 
   constructor() {
 
   }
 
   redirectHome() {
-    this._router.navigate([`/${PageRouteEnum.DEFAULT}`]);
+    this.navService.routeNavigate(PageRouteEnum.DEFAULT)
   }
 
   toggleSidenav() {

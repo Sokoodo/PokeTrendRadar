@@ -10,6 +10,8 @@
           <mat-card-header class="cardHeader">
             <mat-card-title
               class="cardTitle"
+              [middleClickRedirect]="prod.id_url"
+              [isExternalUrl]="true"
               (click)="navigateToDetails(prod.id_url)"
             >
               {{ prod.title }}<br>
@@ -22,6 +24,8 @@
               [src]="'data:image/png;base64,' + prod.image"
               alt="Product Image"
               class="imageContainer"
+              [middleClickRedirect]="prod.id_url"
+              [isExternalUrl]="true"
               (click)="navigateToDetails(prod.id_url)"
             />
             <p class="prodParam">Min: {{ prod.current_min_price }}€</p>
@@ -52,6 +56,8 @@
           <mat-card-footer class="footerContainer">
             <button
               mat-stroked-button
+              [middleClickRedirect]="prod.id_url"
+              [isExternalUrl]="true"
               (click)="redirectCM(prod.id_url)"
               class="redirectBtn"
             >
