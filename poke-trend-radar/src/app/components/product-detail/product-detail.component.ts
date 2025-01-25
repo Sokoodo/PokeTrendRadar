@@ -6,11 +6,13 @@ import { Title } from '@angular/platform-browser';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { OwnedProductDialogComponent } from '../owned-product-dialog/owned-product-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
+import { NavigationService } from '../../services/navigation-manager.service';
+import { MiddleClickDirective } from '../../directives/middleClick.directive';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, ProductChartComponent, MatDialogModule, MatButtonModule],
+  imports: [CommonModule, ProductChartComponent, MatDialogModule, MatButtonModule, MiddleClickDirective],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',
   encapsulation: ViewEncapsulation.None
@@ -21,6 +23,7 @@ export class ProductDetailComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   private _productService = inject(ProductService);
   private _titleService = inject(Title);
+  _navService = inject(NavigationService);
 
   totalAvailability: number;
   productDetails?: ProductDetail;
@@ -64,5 +67,12 @@ export class ProductDetailComponent implements OnInit {
         productUrl: this.productUrl
       }
     });
+  }
+
+
+  redirectOnCardmarket() {
+    if (this.productDetails != undefined) {
+      this._navService.redirectOnUrlPage(this.productDetails.id_url, window);
+    }
   }
 }
