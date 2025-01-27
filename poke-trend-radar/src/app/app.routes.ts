@@ -5,6 +5,7 @@ import { SealedPageComponent } from './route-pages/sealed-page/sealed-page.compo
 import { SinglesPageComponent } from './route-pages/singles-page/singles-page.component';
 import { PageRouteEnum } from './common/common';
 import { MyCardsPageComponent } from './route-pages/my-cards-page/my-cards-page.component';
+import { ProfileSectionPageComponent } from './route-pages/profile-section-page/profile-section-page.component';
 
 
 export const routes: Routes = [
@@ -14,6 +15,7 @@ export const routes: Routes = [
     { path: PageRouteEnum.SEALED, component: SealedPageComponent },
     { path: PageRouteEnum.SINGLES, component: SinglesPageComponent },
     { path: PageRouteEnum.MY_CARDS, component: MyCardsPageComponent },
+    { path: PageRouteEnum.PROFILE_SECTION, component: ProfileSectionPageComponent },
     { path: "**", redirectTo: PageRouteEnum.DEFAULT }
 ];
 

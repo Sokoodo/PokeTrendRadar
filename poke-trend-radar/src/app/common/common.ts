@@ -4,6 +4,7 @@ export enum PageRouteEnum {
     SINGLES = "singles",
     SEALED = "sealed",
     MY_CARDS = "my-cards",
-    PRODUCT_DETAIL = "product-details/:id_url"
+    PRODUCT_DETAIL = "product-details/:id_url",
+    PROFILE_SECTION = "profile"
 }
 

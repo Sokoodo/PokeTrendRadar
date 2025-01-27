@@ -1,18 +1,28 @@
+@use '../../styles.scss' as *;
+
 .toolbarContainer {
-  background-color: #004f4f;
+  background-color: $toolbar-color !important;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding-left: 1.7rem;
-}
 
-.redirecHome {
-  margin-left: 0.7rem;
-  cursor: pointer;
-  font-size: 1.4rem;
-  font-weight: 500;
-}
+  .redirecHome {
+    margin-left: 0.7rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
 
-.toolbarImage{
-  cursor: pointer;
+  .toolbarImage {
+    cursor: pointer;
+  }
+
+  .iconProfile {
+    
+  }
+
+  .toolbarProfileContainer{
+    cursor: pointer;
+  }
 }

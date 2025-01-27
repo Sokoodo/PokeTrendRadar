@@ -1,3 +1,7 @@
+@use 'sass:color';
+
+$toolbar-color: #004f4f;
+
 html,
 body {
   height: 100%;
@@ -9,22 +13,17 @@ body {
   --mat-sidenav-container-width: 11.5rem;
 }
 
-/* width */
+//Scrollbar
 ::-webkit-scrollbar {
   height: 5px;
   width: 5px;
 }
-
-/* Track */
 ::-webkit-scrollbar-track {
   background: rgb(183, 194, 193);
 }
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #004f4f;
-
+  background: $toolbar-color;
   &:hover {
-    background: #004f4fc0;
+    background: rgba($toolbar-color, 0.8);
   }
 }
