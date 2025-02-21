@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { NavigationService } from '../../services/navigation-manager.service';
 import { MiddleClickDirective } from '../../directives/middleClick.directive';
+import { FiltersBarComponent } from '../../components/filters-bar/filters-bar.component';
 
 @Component({
   selector: 'app-sealed-page',
   standalone: true,
-  imports: [MatGridListModule, MatCardModule, CommonModule, MatButtonModule, MiddleClickDirective],
+  imports: [MatGridListModule, MatCardModule, CommonModule, MatButtonModule, MiddleClickDirective, FiltersBarComponent],
   templateUrl: './sealed-page.component.html',
   styleUrl: './sealed-page.component.scss'
 })
@@ -57,5 +58,13 @@ export class SealedPageComponent implements OnInit, OnDestroy {
 
   navigateToDetails(url: string) {
     this._navService.navigateToDetails(url);
+  }
+
+  handleSearch(query: string): void {
+    console.log('Searching for:', query);
+  }
+
+  handleFilter(filter: string): void {
+    console.log('Applying filter:', filter);
   }
 }

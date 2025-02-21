@@ -2,7 +2,17 @@
   <div *ngIf="loading">Loading product details...</div>
   <div *ngIf="error">{{ error }}</div>
 
-  <div *ngIf="singlesProducts">
+  <div *ngIf="singlesProducts != undefined && singlesProducts.length > 0">
+    <app-filters-bar
+      [filtersType]="'Singles'"
+      [placeholderText]="'Search singles products...'"
+      [filters]="[
+        { label: 'Lowest Price', value: 'low' },
+        { label: 'Highest Price', value: 'high' }
+      ]"
+      (searchEvent)="handleSearch($event)"
+      (filterEvent)="handleFilter($event)"
+    ></app-filters-bar>
     <mat-grid-list cols="6" rowHeight="360px" class="gridListContainer">
       @for (prod of singlesProducts; track prod) {
       <mat-grid-tile [colspan]="1" [rowspan]="1">

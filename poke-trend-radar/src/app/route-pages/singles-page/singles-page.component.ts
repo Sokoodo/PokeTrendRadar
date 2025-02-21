@@ -7,11 +7,12 @@ import { Subscription } from 'rxjs';
 import { SinglesDetail, SinglesService } from '../../services/singles-manager.service';
 import { NavigationService } from '../../services/navigation-manager.service';
 import { MiddleClickDirective } from '../../directives/middleClick.directive';
+import { FiltersBarComponent } from "../../components/filters-bar/filters-bar.component";
 
 @Component({
   selector: 'app-singles-page',
   standalone: true,
-  imports: [MatGridListModule, MatCardModule, CommonModule, MatButtonModule, MiddleClickDirective],
+  imports: [MatGridListModule, MatCardModule, CommonModule, MatButtonModule, MiddleClickDirective, FiltersBarComponent],
   templateUrl: './singles-page.component.html',
   styleUrl: './singles-page.component.scss'
 })
@@ -57,5 +58,13 @@ export class SinglesPageComponent implements OnInit, OnDestroy {
 
   navigateToDetails(url: string) {
     this._navService.navigateToDetails(url);
+  }
+
+  handleSearch(query: string): void {
+    console.log('Searching for:', query);
+  }
+
+  handleFilter(filter: string): void {
+    console.log('Applying filter:', filter);
   }
 }

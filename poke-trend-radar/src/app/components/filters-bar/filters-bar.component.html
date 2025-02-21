@@ -1,0 +1,27 @@
+<div class="filterContainer">
+  <mat-form-field appearance="outline" class="searchField">
+    <mat-icon matPrefix>search</mat-icon>
+    <input
+      matInput
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="onSearch()"
+      [placeholder]="placeholderText"
+    />
+    <button mat-button matSuffix (click)="onSearch()" aria-label="Search">
+      <span class="searchSuffix">Search </span>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="filterSelect">
+    <mat-label>Filter</mat-label>
+    <mat-select (selectionChange)="onFilterChange($event.value)">
+      <mat-option value="">All</mat-option>
+      <mat-option *ngFor="let filter of filters" [value]="filter.value">
+        {{ filter.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  
+    <div class="scrapeBtn" (click)="startScraping(filtersType)"> <span class="scrapeTextBtn">Scrape {{filtersType}}</span></div>
+</div>
