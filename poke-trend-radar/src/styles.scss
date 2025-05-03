@@ -1,4 +1,4 @@
-@use 'sass:color';
+@use "sass:color";
 
 $toolbar-color: #004f4f;
 
@@ -11,6 +11,39 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   color: rgb(218, 229, 228);
   --mat-sidenav-container-width: 11.5rem;
+}
+
+.successSnackbar {
+  .mat-mdc-snackbar-surface {
+    background-color: var(--mat-snack-bar-button-color) !important;
+    color: white !important;
+    .mdc-button {
+      background-color: #ffffffb6 !important;
+      font-size: 0.82rem;
+      height: 1.8rem;
+      border-radius: 5px;
+    }
+    .mdc-button:hover{
+      opacity: 0.7;
+    }
+  }
+}
+
+.errorSnackbar {
+  .mat-mdc-snackbar-surface {
+    background-color: rgb(143, 41, 41) !important;
+    color: white !important;
+    .mdc-button {
+      background-color: #ffffffb6 !important;
+      font-size: 0.82rem;
+      height: 1.8rem;
+      border-radius: 5px;
+      color: rgb(143, 41, 41) !important;
+    }
+    .mdc-button:hover{
+      opacity: 0.7;
+    }
+  }
 }
 
 //Scrollbar

@@ -24,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   private _productService = inject(ProductService);
   private _titleService = inject(Title);
-  _navService = inject(NavigationService);
+  private _navService = inject(NavigationService);
 
   totalAvailability: number;
   productDetails?: ProductDetail;
@@ -69,7 +69,6 @@ export class ProductDetailComponent implements OnInit {
       }
     });
   }
-
 
   redirectOnCardmarket() {
     if (this.productDetails != undefined) {

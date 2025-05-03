@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FiltersManagerService } from '../../services/filters-manager.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-filters-bar',
@@ -26,13 +27,12 @@ export class FiltersBarComponent {
   @Output() searchEvent = new EventEmitter<string>();
   @Output() filterEvent = new EventEmitter<string>();
 
+  private _snackBar = inject(MatSnackBar);
   private _filtersService = inject(FiltersManagerService);
 
-  loading: boolean;
   searchQuery: string;
 
   constructor() {
-    this.loading = false;
     this.searchQuery = "";
   }
 
@@ -51,10 +51,20 @@ export class FiltersBarComponent {
       next: (data) => {
         console.log(data)
         this._filtersService.stopLoading();
+        this._snackBar.open(
+          `${filtersType} Scraping Completed!`,
+          'Close',
+          { duration: 2000, horizontalPosition: 'center', verticalPosition: 'bottom', panelClass: 'successSnackbar' }
+        );
       },
       error: (err) => {
         console.error('Error fetching product details', err);
         this._filtersService.stopLoading();
+        this._snackBar.open(
+          `Error scraping ${filtersType} details`,
+          'Close',
+          { duration: 2000, horizontalPosition: 'center', verticalPosition: 'bottom', panelClass: 'errorSnackbar' }
+        );
       }
     });
   }
