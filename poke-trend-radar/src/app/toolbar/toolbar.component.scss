@@ -2,9 +2,6 @@
 
 .toolbarContainer {
   background-color: $toolbar-color !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding-left: 1.7rem;
 
   .redirecHome {
@@ -19,16 +16,24 @@
   }
 
   .rightSideToolbarContainer {
-    display: flex;
+    cursor: pointer;
+    :hover{
+      opacity: 0.7;
+    }
   }
 
   .statsIcon {
     margin-left: 0.5rem;
+    font-size: 1rem;
+    height: 1rem;
+    width: 1rem;
   }
 
   .toolbarProfileContainer {
     cursor: pointer;
-    display: flex;
-    align-items: center;
+    border: 1px solid white;
+    border-radius: 12px;
+    padding: 4px 9px;
+    font-size: 0.94rem;
   }
 }
