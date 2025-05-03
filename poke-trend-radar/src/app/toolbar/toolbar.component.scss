@@ -1,4 +1,4 @@
-@use '../../styles.scss' as *;
+@use "../../styles.scss" as *;
 
 .toolbarContainer {
   background-color: $toolbar-color !important;
@@ -18,11 +18,14 @@
     cursor: pointer;
   }
 
-  .iconProfile {
-    
+  .rightSideToolbarContainer {
+    display: flex;
   }
 
-  .toolbarProfileContainer{
+  .iconProfile {
+  }
+
+  .toolbarProfileContainer {
     cursor: pointer;
   }
 }

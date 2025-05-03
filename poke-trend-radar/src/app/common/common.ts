@@ -8,3 +8,10 @@ export enum PageRouteEnum {
     PROFILE_SECTION = "profile"
 }
 
+export interface CustomNotification {
+    id: number;
+    title: string;
+    message: string;
+    timestamp: Date;
+    route?: string; 
+}

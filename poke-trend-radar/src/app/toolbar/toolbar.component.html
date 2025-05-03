@@ -13,12 +13,17 @@
     class="redirecHome"
     >Poke Trend Radar</span
   >
-  <div
-    (click)="redirectProfileSection()"
-    [middleClickRedirect]="navService.pageRouteEnum.PROFILE_SECTION"
-    class="toolbarProfileContainer"
-  >
-    <span>Profilo</span>
-    <mat-icon class="iconProfile">mood</mat-icon>
+  <div class="rightSideToolbarContainer">
+    <div (click)="togglePopup()" class="mr-4">
+      <i class="material-icons">notifications</i>
+    </div>
+    <div
+      (click)="redirectProfileSection()"
+      [middleClickRedirect]="navService.pageRouteEnum.PROFILE_SECTION"
+      class="toolbarProfileContainer"
+    >
+      <span>Profilo</span>
+      <mat-icon class="iconProfile">mood</mat-icon>
+    </div>
   </div>
 </mat-toolbar>

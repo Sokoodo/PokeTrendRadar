@@ -15,6 +15,9 @@ import { MatIconModule } from '@angular/material/icon';
   encapsulation: ViewEncapsulation.None
 })
 export class ToolbarComponent {
+togglePopup() {
+throw new Error('Method not implemented.');
+}
 
   navService = inject(NavigationService);
 
