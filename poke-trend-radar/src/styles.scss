@@ -1,6 +1,6 @@
+@use "bootstrap/scss/bootstrap" as *;
 @use "sass:color";
-
-$toolbar-color: #004f4f;
+@use "styles/variables" as vars;
 
 html,
 body {
@@ -55,11 +55,8 @@ body {
   background: rgb(183, 194, 193);
 }
 ::-webkit-scrollbar-thumb {
-  background: $toolbar-color;
+  background: vars.$toolbar-color;
   &:hover {
-    background: rgba($toolbar-color, 0.8);
+    background: color.adjust(vars.$toolbar-color, $alpha: -0.2);
   }
 }
-
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';

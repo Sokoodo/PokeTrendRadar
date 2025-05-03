@@ -1,6 +1,6 @@
 .drawerContainer {
   width: 100%;
-  height: calc(100vh - var(--mat-toolbar-standard-height)) !important;
+  height: calc(100vh - 64px) !important;
   --mdc-outlined-button-label-text-color: #079191 !important;
   .matDrawerContent {
     margin-left: 11.5rem;
@@ -15,6 +15,10 @@
 
   .sidenavBtn {
     margin-bottom: 1rem;
+  }
+  .sidenavBtnAccent {
+    margin-bottom: 1rem;
+    color: rgb(172, 124, 70);
   }
   .mat-drawer-inner-container {
     display: flex !important;

@@ -1,7 +1,7 @@
-@use "../../styles.scss" as *;
+@use "../../styles/variables" as vars;
 
 .toolbarContainer {
-  background-color: $toolbar-color !important;
+  background-color: vars.$toolbar-color !important;
   padding-left: 1.7rem;
 
   .redirecHome {
