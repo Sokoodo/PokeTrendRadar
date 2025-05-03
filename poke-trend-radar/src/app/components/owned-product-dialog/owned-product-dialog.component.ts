@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '../../services/notification-manager.service';
 
 @Component({
   selector: 'owned-product-dialog',
@@ -23,6 +24,7 @@ export class OwnedProductDialogComponent {
   private _fb = inject(FormBuilder);
   private _data = inject(MAT_DIALOG_DATA);
   private _snackBar = inject(MatSnackBar);
+  private _notificationService = inject(NotificationService);
 
   ownedProductForm: FormGroup;
 
@@ -52,6 +54,11 @@ export class OwnedProductDialogComponent {
             'Close',
             { duration: 2000, horizontalPosition: 'center', verticalPosition: 'bottom', panelClass: 'successSnackbar' }
           );
+          this._notificationService.addNotification({
+            title: 'Add Owned Product',
+            message: `SUCCESS: "${this._data.productName}" Added Succesfully!`,
+            timestamp: new Date()
+          })
         },
         error: error => {
           console.error('Error saving product:', error);
@@ -61,6 +68,11 @@ export class OwnedProductDialogComponent {
             'Close',
             { duration: 2000, horizontalPosition: 'center', verticalPosition: 'bottom', panelClass: 'errorSnackbar' }
           );
+          this._notificationService.addNotification({
+            title: 'Add Owned Product',
+            message: `ERROR: "${this._data.productName}" not Added!`,
+            timestamp: new Date()
+          })
         }
       });
 

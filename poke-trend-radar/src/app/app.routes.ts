@@ -6,6 +6,7 @@ import { SinglesPageComponent } from './route-pages/singles-page/singles-page.co
 import { PageRouteEnum } from './common/common';
 import { MyCardsPageComponent } from './route-pages/my-cards-page/my-cards-page.component';
 import { ProfileSectionPageComponent } from './route-pages/profile-section-page/profile-section-page.component';
+import { NotificationPageComponent } from './route-pages/notification-page/notification-page.component';
 
 
 export const routes: Routes = [
@@ -16,6 +17,7 @@ export const routes: Routes = [
     { path: PageRouteEnum.SINGLES, component: SinglesPageComponent },
     { path: PageRouteEnum.MY_CARDS, component: MyCardsPageComponent },
     { path: PageRouteEnum.PROFILE_SECTION, component: ProfileSectionPageComponent },
+    { path: PageRouteEnum.NOTIFICATIONS, component: NotificationPageComponent },
     { path: "**", redirectTo: PageRouteEnum.DEFAULT }
 ];
 

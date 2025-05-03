@@ -5,13 +5,6 @@ export enum PageRouteEnum {
     SEALED = "sealed",
     MY_CARDS = "my-cards",
     PRODUCT_DETAIL = "product-details/:id_url",
-    PROFILE_SECTION = "profile"
-}
-
-export interface CustomNotification {
-    id: number;
-    title: string;
-    message: string;
-    timestamp: Date;
-    route?: string; 
+    PROFILE_SECTION = "profile",
+    NOTIFICATIONS = "notifications"
 }

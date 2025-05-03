@@ -65,7 +65,8 @@ export class ProductDetailComponent implements OnInit {
   openAddOwnedDialog() {
     this.dialog.open(OwnedProductDialogComponent, {
       data: {
-        productUrl: this.productUrl
+        productUrl: this.productUrl,
+        productName: this.productDetails?.title ?? ''
       }
     });
   }

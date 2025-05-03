@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CustomNotification } from '../common/common';
 
-@Injectable({ providedIn: 'root' })
+export interface CustomNotification {
+    title: string;
+    message: string;
+    timestamp: Date;
+    route?: string;
+}
+@Injectable({
+    providedIn: 'root'
+})
 export class NotificationService {
     private _notifications = new BehaviorSubject<CustomNotification[]>([]);
 

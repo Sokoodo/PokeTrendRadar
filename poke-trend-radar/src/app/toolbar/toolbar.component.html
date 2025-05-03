@@ -1,4 +1,7 @@
-<mat-toolbar [color]="'primary'" class="toolbarContainer d-flex align-items-center justify-content-between">
+<mat-toolbar
+  [color]="'primary'"
+  class="toolbarContainer d-flex align-items-center justify-content-between"
+>
   <img
     (click)="redirectHome()"
     [middleClickRedirect]="navService.pageRouteEnum.DEFAULT"
@@ -14,8 +17,38 @@
     >Poke Trend Radar</span
   >
   <div class="rightSideToolbarContainer d-flex align-items-center">
-    <div (click)="togglePopup()" class="d-flex mr-3">
-      <i class="material-icons">notifications</i>
+    <div
+      (click)="toggleDropdown()"
+      class="notificationContainer d-flex mr-4 p-2"
+    >
+      <mat-icon
+        class="iconNotification"
+        [matBadge]="recentNotifications.length"
+        [matBadgeHidden]="
+          recentNotifications.length == 0 || areNotificationsChecked == true
+        "
+        [matBadgeSize]="'small'"
+      >
+        notifications
+      </mat-icon>
+      <div class="container dropdown d-flex flex-column" *ngIf="dropdownOpen">
+        <div
+          *ngFor="let n of lastFourNotifications"
+          class="notificationItem row d-flex align-items-center justify-content-between"
+          (click)="goToNotificationPage()"
+        >
+          <span class="notificationEl col-4"
+            ><b>{{ n.title }}</b></span
+          >
+          <span class="notificationEl col-5">{{ n.message }}</span>
+          <span class="notificationEl col-3 d-flex justify-content-end">{{
+            n.timestamp | date : "shortTime"
+          }}</span>
+        </div>
+        <span (click)="goToNotificationPage()" class="seeAll mt-2">
+          Open Notification Center
+        </span>
+      </div>
     </div>
     <div
       (click)="redirectProfileSection()"

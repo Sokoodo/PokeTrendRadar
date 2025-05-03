@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FiltersManagerService } from '../../services/filters-manager.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '../../services/notification-manager.service';
 
 @Component({
   selector: 'app-filters-bar',
@@ -29,6 +30,7 @@ export class FiltersBarComponent {
 
   private _snackBar = inject(MatSnackBar);
   private _filtersService = inject(FiltersManagerService);
+  private _notificationService = inject(NotificationService);
 
   searchQuery: string;
 
@@ -56,6 +58,11 @@ export class FiltersBarComponent {
           'Close',
           { duration: 2000, horizontalPosition: 'center', verticalPosition: 'bottom', panelClass: 'successSnackbar' }
         );
+        this._notificationService.addNotification({
+          title: 'Scraping Status',
+          message: `SUCCESS: "${filtersType}" Scraping Completed!`,
+          timestamp: new Date()
+        })
       },
       error: (err) => {
         console.error('Error fetching product details', err);
@@ -65,6 +72,11 @@ export class FiltersBarComponent {
           'Close',
           { duration: 2000, horizontalPosition: 'center', verticalPosition: 'bottom', panelClass: 'errorSnackbar' }
         );
+        this._notificationService.addNotification({
+          title: 'Scraping Status',
+          message: `ERROR: "${filtersType}" Scraping NOT Succesful!`,
+          timestamp: new Date()
+        })
       }
     });
   }

@@ -1,0 +1,9 @@
+<div class="notificationPageContainer">
+  <h2>All Notifications</h2>
+  <div *ngFor="let n of allNotifications">
+    <strong>{{ n.title }}</strong>
+    <p>{{ n.message }}</p>
+    <small>{{ n.timestamp | date : "short" }}</small>
+    <hr />
+  </div>
+</div>
