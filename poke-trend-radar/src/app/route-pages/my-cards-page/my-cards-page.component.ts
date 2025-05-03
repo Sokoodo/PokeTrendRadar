@@ -17,8 +17,9 @@ import { MiddleClickDirective } from '../../directives/middleClick.directive';
 })
 export class MyCardsPageComponent implements OnInit, OnDestroy {
   private _ownedProdService = inject(OwnedProductService);
-  private _navService = inject(NavigationService);
   private _subs: Subscription[];
+
+  navService = inject(NavigationService);
 
   ownedProducts: OwnedProductData[];
   loading: boolean;
@@ -52,10 +53,10 @@ export class MyCardsPageComponent implements OnInit, OnDestroy {
   }
 
   redirectCM(url: string) {
-    this._navService.redirectOnUrlPage(url, window);
+    this.navService.redirectOnUrlPage(url, window);
   }
 
   navigateToDetails(url: string) {
-    this._navService.navigateToDetails(url);
+    this.navService.navigateToDetails(url);
   }
 }

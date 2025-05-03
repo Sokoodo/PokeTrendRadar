@@ -18,8 +18,9 @@ import { FiltersBarComponent } from "../../components/filters-bar/filters-bar.co
 })
 export class SinglesPageComponent implements OnInit, OnDestroy {
   private _singlesService = inject(SinglesService);
-  private _navService = inject(NavigationService);
   private _subs: Subscription[];
+
+  navService = inject(NavigationService);
 
   singlesProducts: SinglesDetail[];
   loading: boolean;
@@ -53,11 +54,11 @@ export class SinglesPageComponent implements OnInit, OnDestroy {
   }
 
   redirectCM(url: string) {
-    this._navService.redirectOnUrlPage(url, window);
+    this.navService.redirectOnUrlPage(url, window);
   }
 
   navigateToDetails(url: string) {
-    this._navService.navigateToDetails(url);
+    this.navService.navigateToDetails(url);
   }
 
   handleSearch(query: string): void {

@@ -2,12 +2,10 @@ import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { PageRouteEnum } from "../common/common";
 
-
 @Injectable({
     providedIn: 'root'
 })
 export class NavigationService {
-
     private _router = inject(Router);
     private _sealedUrl = PageRouteEnum.SEALED;
     private _singlesUrl = PageRouteEnum.SINGLES;
@@ -39,5 +37,13 @@ export class NavigationService {
 
     redirectOnUrlPage(url: string, win: Window) {
         win.location.href = url;
+    }
+
+    buildUrlForInternalRedirectToDetails(queryParam: string): string {
+        const urlTree = this._router.createUrlTree(
+            [`${PageRouteEnum.PRODUCT_DETAIL}`],
+            { queryParams: { id_url: queryParam } }
+        );
+        return this._router.serializeUrl(urlTree);
     }
 }

@@ -18,8 +18,9 @@ import { FiltersBarComponent } from '../../components/filters-bar/filters-bar.co
 })
 export class SealedPageComponent implements OnInit, OnDestroy {
   private _sealedService = inject(SealedService);
-  private _navService = inject(NavigationService);
   private _subs: Subscription[];
+
+  navService = inject(NavigationService);
 
   sealedProducts: SealedDetail[];
   loading: boolean;
@@ -53,11 +54,11 @@ export class SealedPageComponent implements OnInit, OnDestroy {
   }
 
   redirectCM(url: string) {
-    this._navService.redirectOnUrlPage(url, window);
+    this.navService.redirectOnUrlPage(url, window);
   }
 
   navigateToDetails(url: string) {
-    this._navService.navigateToDetails(url);
+    this.navService.navigateToDetails(url);
   }
 
   handleSearch(query: string): void {

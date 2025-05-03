@@ -1,5 +1,4 @@
-import { Directive, HostListener, inject, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Directive, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[middleClickRedirect]',
@@ -9,8 +8,6 @@ export class MiddleClickDirective {
 
   @Input('middleClickRedirect') middleClickRedirect: string;
   @Input() isExternalUrl: boolean;
-
-  private _route = inject(Router);
 
   constructor() {
     this.middleClickRedirect = '';

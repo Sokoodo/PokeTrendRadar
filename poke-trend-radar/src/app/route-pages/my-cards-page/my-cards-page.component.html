@@ -10,8 +10,7 @@
           <mat-card-header class="cardHeader">
             <mat-card-title
               class="cardTitle"
-              [middleClickRedirect]="ownedProd.id_url"
-              [isExternalUrl]="true"
+              [middleClickRedirect]="navService.buildUrlForInternalRedirectToDetails(ownedProd.id_url)"
               (click)="navigateToDetails(ownedProd.id_url)"
             >
               {{ ownedProd.title }}<br>
@@ -24,8 +23,7 @@
               [src]="'data:image/png;base64,' + ownedProd.image"
               alt="Product Image"
               class="imageContainer"
-              [middleClickRedirect]="ownedProd.id_url"
-              [isExternalUrl]="true"
+              [middleClickRedirect]="navService.buildUrlForInternalRedirectToDetails(ownedProd.id_url)"
               (click)="navigateToDetails(ownedProd.id_url)"
             />
             <p class="prodParam">Min: {{ ownedProd.current_min_price }}€</p>

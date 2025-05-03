@@ -18,6 +18,7 @@ export interface ProductDetail {
     pokemon_species?: string;
     current_min_price: number;
     current_availability: number;
+    owned_products_count: number;
     historical_scrape_data: Array<{
         scrape_date: string;
         avg_price: number;

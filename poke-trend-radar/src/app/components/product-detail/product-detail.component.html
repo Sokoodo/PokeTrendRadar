@@ -1,8 +1,8 @@
 <div class="productDetailsContainer">
   <div *ngIf="loading">Loading product details...</div>
   <div *ngIf="error">{{ error }}</div>
-
-  <div *ngIf="productDetails">
+  @if(productDetails != undefined){
+  <div>
     <div class="productOverview">
       <div class="imageContainer">
         <img
@@ -13,8 +13,7 @@
         />
       </div>
       <div class="productInfoContainer">
-        <p style="font-size: 1.7rem; font-weight: 500; padding-bottom: 1rem">
-          {{ productDetails.title }}
+        <p style="font-size: 1.65rem; font-weight: 500; padding-bottom: 0.5rem" [innerHTML]="productDetails.title">
         </p>
         <p class="pForDetails" *ngIf="productDetails.product_type == 'Singles'">
           <strong>Card Number: </strong> {{ productDetails.card_number }}
@@ -59,6 +58,14 @@
           <strong>Min Price: </strong>
           {{ productDetails.current_min_price }}€
         </p>
+        <p class="pForDetails">
+          <strong>Owned: </strong>
+          @if(productDetails.owned_products_count > 0){
+          <mat-icon>done_outline</mat-icon>
+          }@else{
+          <mat-icon>block</mat-icon>
+          }
+        </p>
         <button mat-button color="primary" (click)="openAddOwnedDialog()">
           Add a Copy
         </button>
@@ -77,4 +84,5 @@
       <app-product-chart [productDetails]="productDetails"></app-product-chart>
     </div>
   </div>
+  }
 </div>

@@ -8,11 +8,12 @@ import { OwnedProductDialogComponent } from '../owned-product-dialog/owned-produ
 import { MatButtonModule } from '@angular/material/button';
 import { NavigationService } from '../../services/navigation-manager.service';
 import { MiddleClickDirective } from '../../directives/middleClick.directive';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, ProductChartComponent, MatDialogModule, MatButtonModule, MiddleClickDirective],
+  imports: [CommonModule, ProductChartComponent, MatDialogModule, MatButtonModule, MiddleClickDirective, MatIconModule],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',
   encapsulation: ViewEncapsulation.None
