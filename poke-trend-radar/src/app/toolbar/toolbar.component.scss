@@ -22,10 +22,13 @@
     display: flex;
   }
 
-  .iconProfile {
+  .statsIcon {
+    margin-left: 0.5rem;
   }
 
   .toolbarProfileContainer {
     cursor: pointer;
+    display: flex;
+    align-items: center;
   }
 }
