@@ -1,9 +1,13 @@
-<div class="notificationPageContainer">
-  <h2>All Notifications</h2>
+<div class="notificationPageContainer d-flex flex-column py-4 px-5">
+  <h3 class="pb-4 font-weight-bold">Notification Center</h3 >
   <div *ngFor="let n of allNotifications">
-    <strong>{{ n.title }}</strong>
-    <p>{{ n.message }}</p>
-    <small>{{ n.timestamp | date : "short" }}</small>
+    <div class="d-flex justify-content-between">
+      <div>
+        <strong>{{ n.title }}</strong>
+        <p>{{ n.message }}</p>
+      </div>
+      <small>{{ n.timestamp | date : "short" }}</small>
+    </div>
     <hr />
   </div>
 </div>

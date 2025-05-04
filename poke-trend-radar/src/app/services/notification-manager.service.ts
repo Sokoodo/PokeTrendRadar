@@ -18,7 +18,7 @@ export class NotificationService {
     addNotification(notification: CustomNotification) {
         const current = this._notifications.value;
         const updated = [notification, ...current];
-        this._notifications.next(updated.slice(0, 50)); // To keep last 50
+        this._notifications.next(updated.slice(0, 70)); // To keep last 70
     }
 
     getRecentNotifications(limit: number = 4): CustomNotification[] {
