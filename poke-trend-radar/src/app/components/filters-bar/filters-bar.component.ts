@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
@@ -7,9 +7,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { FiltersManagerService } from '../../services/filters-manager.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { NotificationService } from '../../services/notification-manager.service';
 
 @Component({
   selector: 'app-filters-bar',
@@ -28,10 +25,6 @@ export class FiltersBarComponent {
   @Output() searchEvent = new EventEmitter<string>();
   @Output() filterEvent = new EventEmitter<string>();
 
-  private _snackBar = inject(MatSnackBar);
-  private _filtersService = inject(FiltersManagerService);
-  private _notificationService = inject(NotificationService);
-
   searchQuery: string;
 
   constructor() {
@@ -47,37 +40,4 @@ export class FiltersBarComponent {
     this.filterEvent.emit(selectedValue);
   }
 
-  startScraping(filtersType: string) {
-    this._filtersService.startLoading();
-    this._filtersService.startScraping(filtersType).subscribe({
-      next: (data) => {
-        console.log(data)
-        this._filtersService.stopLoading();
-        this._snackBar.open(
-          `${filtersType} Scraping Completed!`,
-          'Close',
-          { duration: 2000, horizontalPosition: 'center', verticalPosition: 'bottom', panelClass: 'successSnackbar' }
-        );
-        this._notificationService.addNotification({
-          title: 'Scraping Status',
-          message: `SUCCESS: "${filtersType}" Scraping Completed!`,
-          timestamp: new Date()
-        })
-      },
-      error: (err) => {
-        console.error('Error fetching product details', err);
-        this._filtersService.stopLoading();
-        this._snackBar.open(
-          `Error scraping ${filtersType} details`,
-          'Close',
-          { duration: 2000, horizontalPosition: 'center', verticalPosition: 'bottom', panelClass: 'errorSnackbar' }
-        );
-        this._notificationService.addNotification({
-          title: 'Scraping Status',
-          message: `ERROR: "${filtersType}" Scraping NOT Succesful!`,
-          timestamp: new Date()
-        })
-      }
-    });
-  }
 }

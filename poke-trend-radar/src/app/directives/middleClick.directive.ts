@@ -14,22 +14,22 @@ export class MiddleClickDirective {
     this.isExternalUrl = false;
   }
 
-  @HostListener('mousedown', ['$event']) onMouseDown(event: MouseEvent): void {
-    if (event.button === 1) {
-      event.preventDefault();
-      if (this.isExternalUrl) {
-        if (this.middleClickRedirect != '') {
-          const url = this.middleClickRedirect.startsWith('http')
-            ? this.middleClickRedirect
-            : `https://${this.middleClickRedirect}`;
-          window.open(url, '_blank');
-        }
-      } else {
-        if (this.middleClickRedirect != '') {
-          const fullUrl = `/${this.middleClickRedirect}`;
-          window.open(`${window.location.origin}${fullUrl}`, '_blank');
-        }
-      }
-    }
-  }
+  // @HostListener('mouseup', ['$event']) onMouseUp(event: MouseEvent): void {
+  //   if (event.button === 1) {
+  //     event.preventDefault();
+  //     if (this.isExternalUrl) {
+  //       if (this.middleClickRedirect != '') {
+  //         const url = this.middleClickRedirect.startsWith('http')
+  //           ? this.middleClickRedirect
+  //           : `https://${this.middleClickRedirect}`;
+  //         window.open(url, '_blank');
+  //       }
+  //     } else {
+  //       if (this.middleClickRedirect != '') {
+  //         const fullUrl = `/${this.middleClickRedirect}`;
+  //         window.open(`${window.location.origin}${fullUrl}`, '_blank');
+  //       }
+  //     }
+  //   }
+  // }
 }

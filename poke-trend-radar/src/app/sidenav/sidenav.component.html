@@ -1,4 +1,4 @@
-<mat-drawer-container class="drawerContainer">
+<mat-drawer-container class="drawerContainer" ngSkipHydration>
   <mat-drawer class="actualDrawer" mode="side" opened>
     <button
       mat-stroked-button
@@ -24,6 +24,15 @@
       class="sidenavBtnAccent"
     >
       My Cards
+    </button>
+    <mat-divider class="sidenavBtn"></mat-divider>
+    <button
+      mat-stroked-button
+      [middleClickRedirect]="navService.scrapingUrl"
+      (click)="goToScrapingCenter()"
+      class="sidenavBtn"
+    >
+      Scrapings
     </button>
   </mat-drawer>
   <mat-drawer-content class="matDrawerContent">

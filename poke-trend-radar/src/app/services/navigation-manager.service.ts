@@ -10,19 +10,20 @@ export class NavigationService {
     private _sealedUrl = PageRouteEnum.SEALED;
     private _singlesUrl = PageRouteEnum.SINGLES;
     private _ownedUrl = PageRouteEnum.MY_CARDS;
+    private _scrapingUrl = PageRouteEnum.SCRAPING_CENTER;
 
     get singlesUrl(): string {
         return this._singlesUrl;
     }
-
     get sealedUrl(): string {
         return this._sealedUrl;
     }
-
     get ownedUrl(): string {
         return this._ownedUrl;
     }
-
+    get scrapingUrl(): string {
+        return this._scrapingUrl;
+    }
     get pageRouteEnum(): typeof PageRouteEnum {
         return PageRouteEnum
     }

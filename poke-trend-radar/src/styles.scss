@@ -46,6 +46,11 @@ body {
   }
 }
 
+//mat-dialog
+.mat-mdc-dialog-surface {
+  background-color: transparent !important;
+}
+
 //Scrollbar
 ::-webkit-scrollbar {
   height: 5px;

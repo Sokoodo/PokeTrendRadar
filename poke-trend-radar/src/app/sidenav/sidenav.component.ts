@@ -36,4 +36,7 @@ export class SidenavComponent {
   goToMyCardsPage() {
     this.navService.routeNavigate(PageRouteEnum.MY_CARDS);
   }
+  goToScrapingCenter() {
+    this.navService.routeNavigate(PageRouteEnum.SCRAPING_CENTER);
+  }
 }

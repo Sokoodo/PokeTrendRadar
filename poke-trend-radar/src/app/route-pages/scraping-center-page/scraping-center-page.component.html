@@ -1,0 +1,27 @@
+<div class="scrapingCenterPageContainer w-100 d-flex flex-column py-4 px-5">
+  <mat-form-field appearance="outline" class="searchField w-100">
+    <mat-icon matPrefix>search</mat-icon>
+    <input
+      matInput
+      [(ngModel)]="scrapingUrl"
+      (keyup.enter)="onScrapeProduct()"
+      [placeholder]="'Product Url to Scrape...'"
+    />
+    <button
+      mat-button
+      matSuffix
+      (click)="onScrapeProduct()"
+      aria-label="Search"
+    >
+      <span class="searchSuffix">Search</span>
+    </button>
+  </mat-form-field>
+  <div class="d-flex">
+    <div class="scrapeBtn mr-4" (click)="confirmScraping('Sealed')">
+      <span class="scrapeTextBtn">Scrape Sealed</span>
+    </div>
+    <div class="scrapeBtn mr-4" (click)="confirmScraping('Singles')">
+      <span class="scrapeTextBtn">Scrape Singles</span>
+    </div>
+  </div>
+</div>
