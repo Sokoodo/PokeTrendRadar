@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -18,11 +18,10 @@ export interface SinglesDetail {
 })
 export class SinglesService {
 
+    private _http = inject(HttpClient);
     private apiUrl = `${environment.apiBaseUrl}/api/products/singlesPokemon`;
 
-    constructor(private http: HttpClient) { }
-
     getSinglesListFromApi(): Observable<SinglesDetail[]> {
-        return this.http.get<SinglesDetail[]>(this.apiUrl);
+        return this._http.get<SinglesDetail[]>(this.apiUrl);
     }
 }

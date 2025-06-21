@@ -5,7 +5,7 @@ import { SealedPageComponent } from './route-pages/sealed-page/sealed-page.compo
 import { SinglesPageComponent } from './route-pages/singles-page/singles-page.component';
 import { PageRouteEnum } from './common/common';
 import { MyCardsPageComponent } from './route-pages/my-cards-page/my-cards-page.component';
-import { ProfileSectionPageComponent } from './route-pages/profile-section-page/profile-section-page.component';
+import { StatisticsPageComponent } from './route-pages/profile-section-page/profile-section-page.component';
 import { NotificationPageComponent } from './route-pages/notification-page/notification-page.component';
 import { ScrapingCenterPageComponent } from './route-pages/scraping-center-page/scraping-center-page.component';
 
@@ -16,7 +16,7 @@ export const routes: Routes = [
     { path: PageRouteEnum.SEALED, component: SealedPageComponent },
     { path: PageRouteEnum.SINGLES, component: SinglesPageComponent },
     { path: PageRouteEnum.MY_CARDS, component: MyCardsPageComponent },
-    { path: PageRouteEnum.PROFILE_SECTION, component: ProfileSectionPageComponent },
+    { path: PageRouteEnum.PROFILE_SECTION, component: StatisticsPageComponent },
     { path: PageRouteEnum.NOTIFICATIONS, component: NotificationPageComponent },
     { path: PageRouteEnum.SCRAPING_CENTER, component: ScrapingCenterPageComponent },
     { path: "**", redirectTo: PageRouteEnum.DEFAULT }
