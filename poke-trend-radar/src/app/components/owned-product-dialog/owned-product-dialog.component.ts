@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotificationService } from '../../services/notification-manager.service';
+import { BaseComponent } from '../../base.component';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'owned-product-dialog',
@@ -19,7 +21,7 @@ import { NotificationService } from '../../services/notification-manager.service
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class OwnedProductDialogComponent {
+export class OwnedProductDialogComponent extends BaseComponent {
   private _productService = inject(OwnedProductService);
   private _fb = inject(FormBuilder);
   private _data = inject(MAT_DIALOG_DATA);
@@ -29,6 +31,7 @@ export class OwnedProductDialogComponent {
   ownedProductForm: FormGroup;
 
   constructor(private dialogRef: MatDialogRef<OwnedProductDialogComponent>) {
+    super();
     this.ownedProductForm = this._fb.group({
       buy_price: [null, [Validators.required, Validators.min(0)]],
       buy_date: ['', [Validators.required]],
@@ -45,7 +48,9 @@ export class OwnedProductDialogComponent {
         buy_date: this.ownedProductForm.get("buy_date")?.value,
         buy_price: this.ownedProductForm.get("buy_price")?.value
       };
-      this._productService.addOwnedProduct(ownedProduct).subscribe({
+      this._productService.addOwnedProduct(ownedProduct).pipe(
+        takeUntil(this.destroyed)
+      ).subscribe({
         next: response => {
           console.log('Response:', response);
           this.dialogRef.close(true);

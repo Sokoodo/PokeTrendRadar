@@ -16,17 +16,14 @@ import { PageRouteEnum } from '../common/common';
   encapsulation: ViewEncapsulation.None
 })
 export class SidenavComponent {
-
   private _sidenavService = inject(SidenavService);
+
   navService = inject(NavigationService);
 
   get sidenavOpened(): boolean {
     return this._sidenavService.sidenavOpened
   }
-
-  constructor() {
-  }
-
+  
   goToSealedPage() {
     this.navService.routeNavigate(PageRouteEnum.SEALED);
   }

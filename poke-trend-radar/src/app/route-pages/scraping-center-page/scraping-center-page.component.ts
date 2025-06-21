@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
+import { BaseComponent } from '../../base.component';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'scraping-center-page',
@@ -19,7 +21,7 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class ScrapingCenterPageComponent {
+export class ScrapingCenterPageComponent extends BaseComponent {
   private _notificationService = inject(NotificationService);
   private _snackBar = inject(MatSnackBar);
   private _dialog = inject(MatDialog);
@@ -28,10 +30,8 @@ export class ScrapingCenterPageComponent {
   scrapingUrl: string;
 
   constructor() {
+    super();
     this.scrapingUrl = '';
-  }
-
-  ngOnInit() {
   }
 
   confirmScraping(filtersType: string) {
@@ -39,7 +39,9 @@ export class ScrapingCenterPageComponent {
       data: `Are you sure you want to start scraping ${filtersType}? It may take a while...`
     });
 
-    dialogRef.afterClosed().subscribe((result: boolean) => {
+    dialogRef.afterClosed().pipe(
+      takeUntil(this.destroyed)
+    ).subscribe((result: boolean) => {
       console.log(result)
       if (result == true) {
         this.startScraping(filtersType);

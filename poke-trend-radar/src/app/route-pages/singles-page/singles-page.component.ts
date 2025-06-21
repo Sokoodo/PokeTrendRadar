@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs';
 import { SinglesDetail, SinglesService } from '../../services/singles-manager.service';
 import { NavigationService } from '../../services/navigation-manager.service';
 import { MiddleClickDirective } from '../../directives/middleClick.directive';
 import { FiltersBarComponent } from "../../components/filters-bar/filters-bar.component";
+import { BaseComponent } from '../../base.component';
 
 @Component({
   selector: 'app-singles-page',
@@ -16,9 +17,8 @@ import { FiltersBarComponent } from "../../components/filters-bar/filters-bar.co
   templateUrl: './singles-page.component.html',
   styleUrl: './singles-page.component.scss'
 })
-export class SinglesPageComponent implements OnInit, OnDestroy {
+export class SinglesPageComponent extends BaseComponent implements OnInit {
   private _singlesService = inject(SinglesService);
-  private _subs: Subscription[];
 
   navService = inject(NavigationService);
 
@@ -27,30 +27,26 @@ export class SinglesPageComponent implements OnInit, OnDestroy {
   error: string;
 
   constructor() {
+    super();
     this.singlesProducts = [];
     this.error = "";
-    this._subs = [];
     this.loading = true;
   }
 
   ngOnInit(): void {
-    this._subs.push(
-      this._singlesService.getSinglesListFromApi().subscribe({
-        next: (data) => {
-          this.singlesProducts = data;
-          this.loading = false;
-        },
-        error: (err) => {
-          console.error('Error fetching product details', err);
-          this.error = 'An error occurred while fetching the product details.';
-          this.loading = false;
-        }
-      })
-    );
-  }
-
-  ngOnDestroy(): void {
-    this._subs.forEach(sub => sub.unsubscribe());
+    this._singlesService.getSinglesListFromApi().pipe(
+      takeUntil(this.destroyed)
+    ).subscribe({
+      next: (data) => {
+        this.singlesProducts = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching product details', err);
+        this.error = 'An error occurred while fetching the product details.';
+        this.loading = false;
+      }
+    })
   }
 
   redirectCM(url: string) {

@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common';
 import { CustomNotification, NotificationService } from '../services/notification-manager.service';
+import { BaseComponent } from '../base.component';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
@@ -18,7 +20,7 @@ import { CustomNotification, NotificationService } from '../services/notificatio
   styleUrl: './toolbar.component.scss',
   encapsulation: ViewEncapsulation.None
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent extends BaseComponent implements OnInit {
   @ViewChild('dropdownRef') dropdownRef!: ElementRef;
 
   private _router = inject(Router);
@@ -33,6 +35,7 @@ export class ToolbarComponent implements OnInit {
   areNotificationsChecked: boolean;
 
   constructor() {
+    super();
     this.recentNotifications = [];
     this.dropdownOpen = false;
     this.lastFourNotifications = [];
@@ -40,7 +43,9 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._notificationService.notifications$.subscribe(notifications => {
+    this._notificationService.notifications$.pipe(
+      takeUntil(this.destroyed)
+    ).subscribe(notifications => {
       this.recentNotifications = notifications;
       this.areNotificationsChecked = false;
     })

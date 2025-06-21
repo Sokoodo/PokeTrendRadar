@@ -1,0 +1,40 @@
+.productDetailsContainer {
+  padding: 0.7rem 1rem;
+
+  .productOverview {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1.25rem 1.5rem;
+    margin: 0 7rem;
+  }
+
+  .imageContainer {
+    padding-right: 1.3rem;
+  }
+
+  .img {
+    border-radius: 7px;
+    max-height: 20rem;
+    min-height: 15rem;
+  }
+
+  .productInfoContainer {
+    padding-left: 1.3rem;
+    min-width: 25rem;
+    max-width: 42rem;
+  }
+
+  .pForDetails {
+    max-width: 25rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.55em !important; 
+  }
+
+  .diagramContainer{
+    padding-top: 1rem;
+    background-color: #004f4fbd;
+    border-radius: 50px;
+  }
+}

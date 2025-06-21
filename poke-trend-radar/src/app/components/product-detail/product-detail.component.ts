@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { NavigationService } from '../../services/navigation-manager.service';
 import { MiddleClickDirective } from '../../directives/middleClick.directive';
 import { MatIconModule } from '@angular/material/icon';
+import { BaseComponent } from '../../base.component';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,22 +20,24 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './product-detail.component.scss',
   encapsulation: ViewEncapsulation.None
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent extends BaseComponent implements OnInit {
   @Input("inputProductUrl") inputProductUrl?: string;
 
-  readonly dialog = inject(MatDialog);
+  private readonly _dialog = inject(MatDialog);
   private _productService = inject(ProductService);
   private _titleService = inject(Title);
   private _navService = inject(NavigationService);
 
+  private _productUrl: string;
+
   totalAvailability: number;
   productDetails?: ProductDetail;
-  productUrl: string;
   loading: boolean;
   error: string;
 
   constructor() {
-    this.productUrl = "";
+    super();
+    this._productUrl = "";
     this.error = "";
     this.loading = true;
     this.totalAvailability = 0;
@@ -41,14 +45,16 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.inputProductUrl != undefined) {
-      this.productUrl = this.inputProductUrl;
-      this.getProductDetails(this.productUrl);
+      this._productUrl = this.inputProductUrl;
+      this.getProductDetails(this._productUrl);
       this._titleService.setTitle(this.productDetails?.title ?? "PokeTrendRadar")
     }
   }
 
   getProductDetails(productUrl: string): void {
-    this._productService.getProductDetailsFromApi(productUrl).subscribe({
+    this._productService.getProductDetailsFromApi(productUrl).pipe(
+      takeUntil(this.destroyed)
+    ).subscribe({
       next: (data) => {
         this.productDetails = data;
         this.loading = false;
@@ -63,9 +69,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   openAddOwnedDialog() {
-    this.dialog.open(OwnedProductDialogComponent, {
+    this._dialog.open(OwnedProductDialogComponent, {
       data: {
-        productUrl: this.productUrl,
+        productUrl: this._productUrl,
         productName: this.productDetails?.title ?? ''
       }
     });

@@ -1,13 +1,14 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SealedDetail, SealedService } from '../../services/sealed-manager.service';
 import { MatCardModule } from '@angular/material/card';
-import { Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { NavigationService } from '../../services/navigation-manager.service';
 import { MiddleClickDirective } from '../../directives/middleClick.directive';
 import { FiltersBarComponent } from '../../components/filters-bar/filters-bar.component';
+import { BaseComponent } from '../../base.component';
 
 @Component({
   selector: 'app-sealed-page',
@@ -16,9 +17,8 @@ import { FiltersBarComponent } from '../../components/filters-bar/filters-bar.co
   templateUrl: './sealed-page.component.html',
   styleUrl: './sealed-page.component.scss'
 })
-export class SealedPageComponent implements OnInit, OnDestroy {
+export class SealedPageComponent extends BaseComponent implements OnInit {
   private _sealedService = inject(SealedService);
-  private _subs: Subscription[];
 
   navService = inject(NavigationService);
 
@@ -27,30 +27,26 @@ export class SealedPageComponent implements OnInit, OnDestroy {
   error: string;
 
   constructor() {
+    super();
     this.sealedProducts = [];
     this.error = "";
-    this._subs = [];
     this.loading = true;
   }
 
   ngOnInit(): void {
-    this._subs.push(
-      this._sealedService.getSealedListFromApi().subscribe({
-        next: (data) => {
-          this.sealedProducts = data;
-          this.loading = false;
-        },
-        error: (err) => {
-          console.error('Error fetching product details', err);
-          this.error = 'An error occurred while fetching the product details.';
-          this.loading = false;
-        }
-      })
-    );
-  }
-
-  ngOnDestroy(): void {
-    this._subs.forEach(sub => sub.unsubscribe());
+    this._sealedService.getSealedListFromApi().pipe(
+      takeUntil(this.destroyed)
+    ).subscribe({
+      next: (data) => {
+        this.sealedProducts = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching product details', err);
+        this.error = 'An error occurred while fetching the product details.';
+        this.loading = false;
+      }
+    })
   }
 
   redirectCM(url: string) {
