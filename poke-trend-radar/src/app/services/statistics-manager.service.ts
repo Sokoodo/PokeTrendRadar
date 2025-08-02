@@ -8,11 +8,16 @@ import { Observable } from 'rxjs';
 })
 export class StatisticsManagerService {
 
-  private apiUrl = `${environment.apiBaseUrl}/api/statistics/total_singles_current_price`;
+  private baseStatisticsApiUrl = `${environment.apiBaseUrl}/api/statistics`;
   private http = inject(HttpClient);
 
-  getSinglesListFromApi(): Observable<number> {
-    return this.http.get<number>(this.apiUrl);
+  getSinglesTotalCurrentPrice(): Observable<number> {
+    const url = `${this.baseStatisticsApiUrl}/total_singles_current_price`
+    return this.http.get<number>(url);
   }
 
+  getSinglesTotalBoughtPrice() {
+    const url = `${this.baseStatisticsApiUrl}/total_singles_bought_price`
+    return this.http.get<number>(url);
+  }
 }

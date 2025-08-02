@@ -16,17 +16,25 @@ export class StatisticsPageComponent extends BaseComponent implements OnInit {
   private _statisticsManagerService = inject(StatisticsManagerService);
 
   totOwnedSinglesPrice: WritableSignal<number>;
+  totBuoghtSinglesPrice: WritableSignal<number>;
 
   constructor() {
     super();
     this.totOwnedSinglesPrice = signal(0);
+    this.totBuoghtSinglesPrice = signal(0);
   }
 
   ngOnInit(): void {
-    this._statisticsManagerService.getSinglesListFromApi().pipe(
+    this._statisticsManagerService.getSinglesTotalCurrentPrice().pipe(
       takeUntil(this.destroyed)
     ).subscribe((value: number) => {
       this.totOwnedSinglesPrice.set(value);
+    });
+
+    this._statisticsManagerService.getSinglesTotalBoughtPrice().pipe(
+      takeUntil(this.destroyed)
+    ).subscribe((value: number) => {
+      this.totBuoghtSinglesPrice.set(value);
     });
   }
 
